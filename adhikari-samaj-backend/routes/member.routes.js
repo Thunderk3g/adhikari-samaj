@@ -1,10 +1,10 @@
 var express = require('express');
 var controller = require('../controller/member.controller');
 var router = express.Router();
-router.post('/setItems', controller.getMember);
+router.post('/getMember', controller.getMember);
 
-router.get('/getListItems', controller.addMember);
+router.get('/addMember', controller.addMember);
 
-router.post('/deleteItem', controller.deleteMember);
+router.post('/deleteMember', controller.deleteMember);
 
 module.exports = router;
