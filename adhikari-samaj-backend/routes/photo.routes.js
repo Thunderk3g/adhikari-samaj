@@ -1,10 +1,8 @@
-var express = require('express');
-var controller = require('../controller/member.controller');
-var router = express.Router();
-router.post('/getMember', controller.getMember);
+const express = require('express');
+const imageController = require('../controller/photo.controller');
 
-router.get('/addMember', controller.addMember);
+const router = express.Router();
 
-router.post('/deleteMember', controller.deleteMember);
+router.post('/', imageController.uploadImage);
 
 module.exports = router;
