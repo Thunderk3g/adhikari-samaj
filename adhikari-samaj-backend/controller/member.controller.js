@@ -20,19 +20,19 @@ exports.addMember = async function (req, res) {
     });
 }
 exports.getMember = async function (req, res) {
-    const data = await Member.find().sort({
-        createdAt: -1
-    }, (err, member) => {
-        if (err) {
-            res.status(500).send(err);
-        }
-        if (!member) {
-            res.status(401).send({ message: "No members exist" });
-        }
-        res.send(data);
-    });
+    try {
+        const members = await Member.find();
 
-}
+        if (members.length === 0) {
+            return res.status(404).send({ message: "No members exist" });
+        }
+
+        res.send(members);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
 exports.deleteMember = async function (req, res) {
     const data = await Member.findOneAndDelete({ memberName: req.body.memberName }, (err, user) => {
         if (err) {
